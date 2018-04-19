@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+
+    <tab
+        icon="@drawable/ic_extension_white_24dp"
+        id="@+id/tab_recommend"
+        title="推荐" />
+
+    <tab
+        icon="@drawable/ic_dashboard_white_24dp"
+        id="@+id/tab_column"
+        title="栏目" />
+
+    <tab
+        icon="@drawable/ic_my_location_white_24dp"
+        id="@+id/tab_my"
+        title="我的" />
+</tabs>

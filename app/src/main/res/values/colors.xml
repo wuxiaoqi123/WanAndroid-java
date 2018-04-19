@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="color_red">#ff0000</color>
+    <color name="white">#ffffff</color>
+    <color name="black_50">#55000000</color>
+    <color name="black_70">#77000000</color>
+    <color name="tran">#00000000</color>
+    <color name="gray">#cccccc</color>
+    <color name="black">#000000</color>
+    <color name="gray1">#9cffffff</color>
+    <color name="colorItemBackground">#d9d9d9</color>
+    <color name="colorTitle">#666</color>
+    <color name="colorContent">#ff333333</color>
+    <color name="itemLowBackground">#d9d9d9</color>
+    <color name="itemBackground">#DD7D7D7D</color>
+    <color name="tabBackground">#777D7D7D</color>
+
+    <color name="Grey50">#FAFAFA</color>
+    <color name="Grey100">#F5F5F5</color>
+    <color name="Grey200">#EEEEEE</color>
+    <color name="Grey300">#E0E0E0</color>
+    <color name="Grey400">#bdbdbd</color>
+    <color name="Grey500">#9e9e9e</color>
+    <color name="Grey600">#757575</color>
+    <color name="Grey700">#616161</color>
+    <color name="Grey800">#424242</color>
+    <color name="Grey900">#212121</color>
+    <color name="line_divider">@color/Grey300</color>
 </resources>

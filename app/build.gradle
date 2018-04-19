@@ -68,4 +68,6 @@ dependencies {
     implementation 'cn.bingoogolapple:bga-banner:2.1.5@aar'
     //  通用PopupWindow
     implementation 'com.github.razerdp:BasePopup:v1.6.2'
+    // 底部导航按钮
+    implementation 'com.roughike:bottom-bar:2.0.2'
 }
