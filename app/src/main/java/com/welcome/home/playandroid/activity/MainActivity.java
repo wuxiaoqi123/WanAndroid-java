@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
+import com.roughike.bottombar.BottomBar;
 import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.base.BaseActivity;
 import com.welcome.home.playandroid.fragment.ColumnFragment;
@@ -24,13 +25,10 @@ public class MainActivity extends BaseActivity {
         activity.startActivity(intent);
     }
 
-    public static final String TAG_FRAGMENT_HOME = "0";
     public static final int HOME_PAGE = 0;
 
-    public static final String TAG_FRAGMENT_COLUMN = "1";
     public static final int COLUMN_PAGE = 1;
 
-    public static final String TAG_FRAGMENT_ME = "2";
     public static final int ME_PAGE = 2;
 
     private String mCurrentTag;
@@ -42,6 +40,9 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.activity_main_root_fl)
     FrameLayout contentFl;
+
+    @BindView(R.id.activity_main_bottomBar)
+    BottomBar bottomBar;
 
     @Override
     protected int getLayoutId() {
@@ -70,7 +71,21 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
+        bottomBar.setOnTabSelectListener(tabId -> {
+            switch (tabId) {
+                case R.id.tab_recommend:
+                    setFragment(HOME_PAGE);
+                    break;
+                case R.id.tab_column:
+                    setFragment(COLUMN_PAGE);
+                    break;
+                case R.id.tab_my:
+                    setFragment(ME_PAGE);
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     private void setFragment(int index) {
