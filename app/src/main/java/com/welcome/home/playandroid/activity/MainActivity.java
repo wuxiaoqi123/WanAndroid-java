@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.widget.FrameLayout;
 
 import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.base.BaseActivity;
@@ -19,6 +20,9 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.activity_main_toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.activity_main_root_fl)
+    FrameLayout contentFl;
 
     @Override
     protected int getLayoutId() {
