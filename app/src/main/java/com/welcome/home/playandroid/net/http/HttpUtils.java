@@ -150,6 +150,10 @@ public class HttpUtils {
         }
     }
 
+    public RetrofitClient getRetrofitClient() {
+        return new RetrofitClient(configuration.getBaseUrl(), mOkHttpClient);
+    }
+
     public static class Singleton {
         @SuppressLint("StaticFieldLeak")
         static HttpUtils instance = new HttpUtils();
