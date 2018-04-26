@@ -7,7 +7,7 @@ import java.util.List;
  * 首页文章列表
  */
 
-public class ArticleData {
+public class HomeList {
 
     /**
      * curPage : 1
