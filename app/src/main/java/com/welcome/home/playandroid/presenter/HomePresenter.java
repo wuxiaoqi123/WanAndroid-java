@@ -32,12 +32,16 @@ public class HomePresenter implements HomeContract.Presenter {
                 .subscribe(new RxObserver<HomeList>() {
                     @Override
                     public void onFail(ResponeThrowable ex) {
-
+                        mView.showErrMsg(ex.message);
                     }
 
                     @Override
                     public void onSuccess(HomeList homeList) {
-
+                        if (page == 0) {
+                            mView.setHomeList(homeList);
+                        } else {
+                            mView.addHomeList(homeList);
+                        }
                     }
                 });
 

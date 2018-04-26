@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.welcome.home.playandroid.R;
@@ -137,5 +140,23 @@ public class MainActivity extends BaseActivity {
             default:
         }
         return fragment;
+    }
+
+    private long lastClickTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            if (System.currentTimeMillis() - lastClickTime > 2000) {
+                lastClickTime = System.currentTimeMillis();
+                Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            } else {
+                finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+        }
     }
 }
