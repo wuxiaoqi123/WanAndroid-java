@@ -63,6 +63,11 @@ public class HttpUtils {
         }
     }
 
+    public void init(Context context, String baseUrl) {
+        init(context);
+        configuration.baseUrl(baseUrl);
+    }
+
     public HttpUtils setLoadDiskCache(boolean isCache) {
         if (configuration == null) {
             configuration = new NetWorkConfiguration(mContext);

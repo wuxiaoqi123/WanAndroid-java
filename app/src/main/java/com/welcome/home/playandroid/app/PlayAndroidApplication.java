@@ -3,6 +3,7 @@ package com.welcome.home.playandroid.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.net.http.HttpUtils;
 
 /**
@@ -19,6 +20,7 @@ public class PlayAndroidApplication extends Application {
         super.onCreate();
         appContext = this;
 
-        HttpUtils.getInstance().init(this);
+        String server_url = getResources().getString(R.string.server_url);
+        HttpUtils.getInstance().init(this, server_url);
     }
 }
