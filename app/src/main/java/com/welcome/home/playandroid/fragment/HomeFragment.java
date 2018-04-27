@@ -2,6 +2,7 @@ package com.welcome.home.playandroid.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
@@ -9,6 +10,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.welcome.home.playandroid.R;
+import com.welcome.home.playandroid.adapter.HomeListAdapter;
 import com.welcome.home.playandroid.base.BaseFragment;
 import com.welcome.home.playandroid.bean.HomeList;
 import com.welcome.home.playandroid.contract.HomeContract;
@@ -38,6 +40,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     private int page = 0;
 
+    private HomeListAdapter mAdapter;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_home;
@@ -45,6 +49,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     @Override
     protected void initView(Bundle bundle) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(mAdapter = new HomeListAdapter());
         presenter = new HomePresenter(this);
         presenter.loadHomeList(0);
         initRefreshLayout();
@@ -84,13 +90,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void setHomeList(HomeList homeList) {
         smartRefreshLayout.finishRefresh();
-        Toast.makeText(mContext, "加载成功", Toast.LENGTH_SHORT).show();
+        mAdapter.setHomeList(homeList);
     }
 
     @Override
     public void addHomeList(HomeList homeList) {
         smartRefreshLayout.finishLoadMore();
-        Toast.makeText(mContext, "加载更多", Toast.LENGTH_SHORT).show();
-
+        mAdapter.addHomeList(homeList);
     }
 }
