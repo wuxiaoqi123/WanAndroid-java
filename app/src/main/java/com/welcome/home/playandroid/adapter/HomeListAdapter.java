@@ -1,5 +1,7 @@
 package com.welcome.home.playandroid.adapter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
 import com.welcome.home.playandroid.R;
+import com.welcome.home.playandroid.activity.BrowserActivity;
 import com.welcome.home.playandroid.bean.HomeList;
 
 import java.util.ArrayList;
@@ -83,6 +86,11 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             nicedateTv.setText(homeListDatasBean.getNiceDate());
             itemView.animate().scaleX(0.9f).scaleY(0.7f).alpha(0.8f).setDuration(0).start();
             itemView.animate().scaleX(1).scaleY(1).alpha(1).setDuration(350).setInterpolator(new OvershootInterpolator(0.8f)).start();
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(itemView.getContext(), BrowserActivity.class);
+                intent.setData(Uri.parse(homeListDatasBean.getLink()));
+                itemView.getContext().startActivity(intent);
+            });
         }
     }
 }

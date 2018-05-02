@@ -10,6 +10,15 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resValue("string", "server_url", "http://www.wanandroid.com/")
+        ndk {
+            abiFilters "armeabi"
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
     }
 
     signingConfigs {
