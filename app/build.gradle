@@ -82,4 +82,5 @@ dependencies {
     implementation 'com.github.razerdp:BasePopup:v1.6.2'
     // 底部导航按钮
     implementation 'com.roughike:bottom-bar:2.0.2'
+    implementation 'com.android.support:cardview-v7:26.1.0'
 }
