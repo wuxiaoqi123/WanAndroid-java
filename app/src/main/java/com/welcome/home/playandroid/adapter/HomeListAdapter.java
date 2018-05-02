@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
 import com.welcome.home.playandroid.R;
@@ -35,8 +36,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void addHomeList(HomeList homeList) {
+        int lenght = mList.size();
         mList.addAll(homeList.getDatas());
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
+        notifyItemChanged(lenght);
     }
 
     @Override
@@ -78,6 +81,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             titleTv.setText(homeListDatasBean.getTitle());
             authorTv.setText(homeListDatasBean.getAuthor());
             nicedateTv.setText(homeListDatasBean.getNiceDate());
+            itemView.animate().scaleX(0.9f).scaleY(0.7f).alpha(0.8f).setDuration(0).start();
+            itemView.animate().scaleX(1).scaleY(1).alpha(1).setDuration(350).setInterpolator(new OvershootInterpolator(0.8f)).start();
         }
     }
 }
