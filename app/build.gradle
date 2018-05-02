@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resValue("string", "server_url", "http://www.wanandroid.com/")
     }
 
     signingConfigs {
@@ -24,7 +25,6 @@ android {
         release {
             minifyEnabled false
             signingConfig signingConfigs.config
-            resValue("string", "server_url", "http://www.wanandroid.com/")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

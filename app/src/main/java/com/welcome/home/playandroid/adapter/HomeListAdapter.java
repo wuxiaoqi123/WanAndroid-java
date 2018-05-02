@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.bean.HomeList;
@@ -11,6 +12,7 @@ import com.welcome.home.playandroid.bean.HomeList;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -46,7 +48,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HomeListItemViewHolder) {
-
+            ((HomeListItemViewHolder) holder).bindHomeListItem(mList.get(position));
         }
     }
 
@@ -58,9 +60,24 @@ public class HomeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     static class HomeListItemViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.item_home_list_title_tv)
+        TextView titleTv;
+
+        @BindView(R.id.item_home_list_author_tv)
+        TextView authorTv;
+
+        @BindView(R.id.item_home_list_nicedate_tv)
+        TextView nicedateTv;
+
         HomeListItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        void bindHomeListItem(HomeList.DatasBean homeListDatasBean) {
+            titleTv.setText(homeListDatasBean.getTitle());
+            authorTv.setText(homeListDatasBean.getAuthor());
+            nicedateTv.setText(homeListDatasBean.getNiceDate());
         }
     }
 }

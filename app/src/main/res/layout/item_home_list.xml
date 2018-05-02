@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
+    android:layout_height="60dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginTop="2dp"
     android:background="@android:color/white">
 
     <TextView
+        android:id="@+id/item_home_list_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="哈哈中" />
+        android:layout_margin="3dp"
+        android:singleLine="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="Android 8.0 画中画" />
+
+    <TextView
+        android:id="@+id/item_home_list_author_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="3dp"
+        android:layout_marginTop="3dp"
+        android:includeFontPadding="false"
+        android:textSize="10sp"
+        tools:ignore="SmallSp"
+        tools:text="谷歌开发者" />
+
+    <TextView
+        android:id="@+id/item_home_list_nicedate_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="10sp"
+        tools:ignore="RelativeOverlap,SmallSp"
+        tools:text="1天前" />
 </RelativeLayout>

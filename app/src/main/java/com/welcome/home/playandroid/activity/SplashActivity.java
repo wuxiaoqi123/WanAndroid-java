@@ -42,6 +42,7 @@ public class SplashActivity extends BaseActivity {
                 .setInterpolator(new AccelerateInterpolator())
                 .start();
         new Handler().postDelayed(() -> {
+            if (isFinishing()) return;
             MainActivity.startActivity(SplashActivity.this);
             overridePendingTransition(0, 0);
             SplashActivity.this.finish();
