@@ -1,9 +1,13 @@
 package com.welcome.home.playandroid.fragment;
 
 import android.os.Bundle;
+import android.widget.ExpandableListView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.base.BaseFragment;
+
+import butterknife.BindView;
 
 /**
  * Created by wuxiaoqi on 2018/4/20.
@@ -15,6 +19,12 @@ public class ColumnFragment extends BaseFragment {
     public static ColumnFragment getInstance() {
         return new ColumnFragment();
     }
+
+    @BindView(R.id.refresh_content_smart_layout)
+    SmartRefreshLayout smartRefreshLayout;
+
+    @BindView(R.id.fragment_column_expandable_listview)
+    ExpandableListView expandableListView;
 
     @Override
     protected int getLayoutId() {
