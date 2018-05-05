@@ -1,5 +1,6 @@
 package com.welcome.home.playandroid.net.api;
 
+import com.welcome.home.playandroid.bean.ColumnList;
 import com.welcome.home.playandroid.bean.HomeList;
 import com.welcome.home.playandroid.net.response.HttpResponse;
 
@@ -16,4 +17,7 @@ public interface WanAndroidApi {
 
     @GET("/article/list/{page}/json")
     Observable<HttpResponse<HomeList>> getHomeList(@Path("page") int page);
+
+    @GET("/tree/json")
+    Observable<HttpResponse<ColumnList>> getColumnList();
 }
