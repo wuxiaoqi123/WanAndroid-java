@@ -4,6 +4,8 @@ import com.welcome.home.playandroid.bean.ColumnList;
 import com.welcome.home.playandroid.bean.HomeList;
 import com.welcome.home.playandroid.net.response.HttpResponse;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -19,5 +21,5 @@ public interface WanAndroidApi {
     Observable<HttpResponse<HomeList>> getHomeList(@Path("page") int page);
 
     @GET("/tree/json")
-    Observable<HttpResponse<ColumnList>> getColumnList();
+    Observable<HttpResponse<List<ColumnList>>> getColumnList();
 }

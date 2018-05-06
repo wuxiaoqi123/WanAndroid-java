@@ -16,7 +16,7 @@ import io.reactivex.functions.Function;
 public class ErrorTransformer<T> implements ObservableTransformer<HttpResponse<T>, T> {
     @Override
     public ObservableSource<T> apply(Observable<HttpResponse<T>> upstream) {
-        return upstream.map((Function<HttpResponse<T>, T>) tHttpResponse -> {
+        return upstream.map(tHttpResponse -> {
             if (tHttpResponse.getErrorCode() != 0) {
                 throw new ServerException(tHttpResponse.getErrorCode(), tHttpResponse.getErrorMsg());
             } else {

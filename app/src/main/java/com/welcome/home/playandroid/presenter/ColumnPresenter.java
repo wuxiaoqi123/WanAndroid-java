@@ -8,6 +8,8 @@ import com.welcome.home.playandroid.net.exception.ResponeThrowable;
 import com.welcome.home.playandroid.net.http.HttpUtils;
 import com.welcome.home.playandroid.net.transformer.DefaultTransformer;
 
+import java.util.List;
+
 /**
  * Created by wuxiaoqi on 2018/5/4.
  * ColumnFragment-> P
@@ -27,15 +29,15 @@ public class ColumnPresenter implements ColumnContract.Presenter {
                 .getColumnList()
                 .compose(new DefaultTransformer<>())
                 .compose(mView.bindToLife())
-                .subscribe(new RxObserver<ColumnList>() {
+                .subscribe(new RxObserver<List<ColumnList>>() {
                     @Override
                     public void onFail(ResponeThrowable ex) {
                         mView.showErrMsg(ex.message);
                     }
 
                     @Override
-                    public void onSuccess(ColumnList columnList) {
-                        mView.setColumnList(columnList);
+                    public void onSuccess(List<ColumnList> columnLists) {
+                        mView.setColumnList(columnLists);
                     }
                 });
     }

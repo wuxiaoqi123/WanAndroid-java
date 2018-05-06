@@ -11,6 +11,8 @@ import com.welcome.home.playandroid.bean.ColumnList;
 import com.welcome.home.playandroid.contract.ColumnContract;
 import com.welcome.home.playandroid.presenter.ColumnPresenter;
 
+import java.util.List;
+
 import butterknife.BindView;
 
 /**
@@ -58,7 +60,7 @@ public class ColumnFragment extends BaseFragment implements ColumnContract.View 
     }
 
     @Override
-    public void setColumnList(ColumnList list) {
+    public void setColumnList(List<ColumnList> list) {
         Toast.makeText(mContext, "成功", Toast.LENGTH_SHORT).show();
     }
 }
