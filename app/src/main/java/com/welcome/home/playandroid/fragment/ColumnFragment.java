@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.welcome.home.playandroid.R;
+import com.welcome.home.playandroid.adapter.ColumnExpandableListViewAdapter;
 import com.welcome.home.playandroid.base.BaseFragment;
 import com.welcome.home.playandroid.bean.ColumnList;
 import com.welcome.home.playandroid.contract.ColumnContract;
@@ -32,6 +33,8 @@ public class ColumnFragment extends BaseFragment implements ColumnContract.View 
     @BindView(R.id.fragment_column_expandable_listview)
     ExpandableListView expandableListView;
 
+    private ColumnExpandableListViewAdapter mAdapter;
+
     private ColumnPresenter presenterImp;
 
     @Override
@@ -41,6 +44,8 @@ public class ColumnFragment extends BaseFragment implements ColumnContract.View 
 
     @Override
     protected void initView(Bundle bundle) {
+        mAdapter = new ColumnExpandableListViewAdapter(getActivity());
+        expandableListView.setAdapter(mAdapter);
         presenterImp = new ColumnPresenter(this);
     }
 
@@ -61,6 +66,6 @@ public class ColumnFragment extends BaseFragment implements ColumnContract.View 
 
     @Override
     public void setColumnList(List<ColumnList> list) {
-        Toast.makeText(mContext, "成功", Toast.LENGTH_SHORT).show();
+        mAdapter.setColumnLists(list);
     }
 }
