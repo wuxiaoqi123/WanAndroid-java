@@ -1,16 +1,20 @@
 package com.welcome.home.playandroid.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.adapter.ColumnExpandableListViewAdapter;
 import com.welcome.home.playandroid.base.BaseFragment;
 import com.welcome.home.playandroid.bean.ColumnList;
 import com.welcome.home.playandroid.contract.ColumnContract;
 import com.welcome.home.playandroid.presenter.ColumnPresenter;
+import com.welcome.home.playandroid.util.SmartRefreshLayoutUtils;
 
 import java.util.List;
 
@@ -44,14 +48,25 @@ public class ColumnFragment extends BaseFragment implements ColumnContract.View 
 
     @Override
     protected void initView(Bundle bundle) {
+        initRefreshLayout();
         mAdapter = new ColumnExpandableListViewAdapter(getActivity());
         expandableListView.setAdapter(mAdapter);
         presenterImp = new ColumnPresenter(this);
     }
 
+    private void initRefreshLayout() {
+        SmartRefreshLayoutUtils.initRefreshLayoutBz(getActivity(), smartRefreshLayout);
+        smartRefreshLayout.setEnableLoadMore(false);
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                presenterImp.getColumnList();
+            }
+        });
+    }
+
     @Override
     protected void initListener() {
-
     }
 
     @Override
@@ -66,6 +81,7 @@ public class ColumnFragment extends BaseFragment implements ColumnContract.View 
 
     @Override
     public void setColumnList(List<ColumnList> list) {
+        smartRefreshLayout.finishRefresh();
         mAdapter.setColumnLists(list);
     }
 }

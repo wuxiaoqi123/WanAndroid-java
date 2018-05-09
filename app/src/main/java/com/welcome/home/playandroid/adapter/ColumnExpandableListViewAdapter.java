@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.bean.ColumnList;
@@ -88,10 +89,11 @@ public class ColumnExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_column, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_column_column, parent, false);
         }
         TextView textView = convertView.findViewById(R.id.column_tv);
         textView.setText(getGroup(groupPosition).getChildren().get(childPosition).getName());
+        convertView.setOnClickListener(v -> Toast.makeText(mContext, "点击" + getGroup(groupPosition).getChildren().get(childPosition).getName(), Toast.LENGTH_SHORT).show());
         return convertView;
     }
 
