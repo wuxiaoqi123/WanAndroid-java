@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.welcome.home.playandroid.R;
+import com.welcome.home.playandroid.activity.ColumnContentActivity;
 import com.welcome.home.playandroid.bean.ColumnList;
 
 import java.util.ArrayList;
@@ -93,7 +93,7 @@ public class ColumnExpandableListViewAdapter extends BaseExpandableListAdapter {
         }
         TextView textView = convertView.findViewById(R.id.column_tv);
         textView.setText(getGroup(groupPosition).getChildren().get(childPosition).getName());
-        convertView.setOnClickListener(v -> Toast.makeText(mContext, "点击" + getGroup(groupPosition).getChildren().get(childPosition).getName(), Toast.LENGTH_SHORT).show());
+        convertView.setOnClickListener(v -> ColumnContentActivity.startActivity(mContext, getGroup(groupPosition).getChildren().get(childPosition).getId()));
         return convertView;
     }
 
