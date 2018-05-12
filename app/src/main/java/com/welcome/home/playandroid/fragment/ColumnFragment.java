@@ -57,12 +57,7 @@ public class ColumnFragment extends BaseFragment implements ColumnContract.View 
     private void initRefreshLayout() {
         SmartRefreshLayoutUtils.initRefreshLayoutBz(getActivity(), smartRefreshLayout);
         smartRefreshLayout.setEnableLoadMore(false);
-        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                presenterImp.getColumnList();
-            }
-        });
+        smartRefreshLayout.setOnRefreshListener(refreshLayout -> presenterImp.getColumnList());
     }
 
     @Override
