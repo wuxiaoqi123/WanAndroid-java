@@ -58,6 +58,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait" />
 
+        <!-- 注册或登录界面 -->
+        <activity
+            android:name=".activity.RegisterOrLoginActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullWindowTran" />
     </application>
 
 </manifest>

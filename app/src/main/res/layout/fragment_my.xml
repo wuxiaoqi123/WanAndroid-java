@@ -1,12 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="我的" />
+    <RelativeLayout
+        android:id="@+id/fragment_my_head_rl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary">
 
-</RelativeLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fragment_my_circle_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:elevation="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            tools:ignore="UnusedAttribute" />
+
+        <TextView
+            android:id="@+id/fragment_my_regiter_or_login_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_my_circle_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="@string/register_or_login"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/windowBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@color/viewBackground"
+            android:divider="@drawable/line"
+            android:orientation="vertical"
+            android:showDividers="middle|end|beginning">
+
+            <TextView
+                android:id="@+id/fragment_my_exit_tv"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="?attr/selectableItemBackground"
+                android:drawableLeft="@drawable/ic_exit_to_app_black_24dp"
+                android:drawablePadding="45dp"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="15dp"
+                android:text="@string/my_setting"
+                android:textColor="@color/my_text_color"
+                android:textSize="18sp"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/fragment_my_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableLeft="@drawable/ic_info_outline_black_24dp"
+                    android:drawablePadding="45dp"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="@string/my_version"
+                    android:textColor="@color/my_text_color"
+                    android:textSize="18sp"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/fragment_my_version_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginRight="40dp"
+                    android:textSize="14sp"
+                    tools:ignore="RelativeOverlap"
+                    tools:text="3.0.1" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

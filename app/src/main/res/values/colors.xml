@@ -31,5 +31,20 @@
     <color name="Grey900">#212121</color>
     <color name="line_divider">@color/Grey300</color>
     <color name="bannder_place_color">#ffc6c6c6</color>
+    <color name="windowBackground">@color/Grey100</color>
+    <color name="viewBackground">@android:color/white</color>
+    <color name="textColorPrimary">#616161</color>
 
+    <color name="my_text_color">#000000</color>
+    <color name="item_movie_color">#ffffff</color>
+
+    <color name="colorPageBg">#f2f4f5</color>
+    <color name="colorTopPageBg">#22cccccc</color>
+
+
+    <color name="account_input_bg_color">#33ffffff</color>
+    <color name="login_input_active">#1d9ce1</color>
+    <color name="account_pressed_true">#881d9ce1</color>
+    <color name="login_line_color">#dededf</color>
+    <color name="control_bar_bg">#e0222222</color>
 </resources>
