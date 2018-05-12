@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.smtt.sdk.QbSdk;
 import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.net.http.HttpUtils;
@@ -24,7 +25,7 @@ public class PlayAndroidApplication extends Application {
 
         String server_url = getResources().getString(R.string.server_url);
         HttpUtils.getInstance().init(this, server_url);
-
+        Fresco.initialize(appContext);
         initTencentX5();
     }
 
