@@ -1,4 +1,5 @@
-[![Platform][1]][2] ![GitHub license][3] 
+[![Platform][1]][2] ![GitHub license][3]
+ 
 [1]:https://img.shields.io/badge/platform-Android-blue.svg  
 [2]:https://github.com/wuxiaoqi123/news_client
 [3]:https://img.shields.io/badge/license-Apache%202-blue.svg
