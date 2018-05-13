@@ -10,9 +10,9 @@
   移步~~~ [玩Android Api](https://github.com/wuxiaoqi123/WanAndroid-java/wiki/%E7%8E%A9Android-Api)
 
 ## Screenshots
-<img width="173" height=“274” src="https://raw.githubusercontent.com/wuxiaoqi123/playAndroid/master/file/img1.png"></img>
-<img width="173" height=“274” src="https://raw.githubusercontent.com/wuxiaoqi123/playAndroid/master/file/img2.png"></img>
-<img width="173" height=“274” src="https://raw.githubusercontent.com/wuxiaoqi123/playAndroid/master/file/img3.png"></img>
+<img width="360" height=“480” src="https://raw.githubusercontent.com/wuxiaoqi123/WanAndroid-java/master/file/img1.png"></img>
+<img width="360" height=“480” src="https://raw.githubusercontent.com/wuxiaoqi123/WanAndroid-java/master/file/img2.png"></img>
+<img width="360" height=“480” src="https://raw.githubusercontent.com/wuxiaoqi123/WanAndroid-java/master/file/img3.png"></img>
 
 
 ## License
