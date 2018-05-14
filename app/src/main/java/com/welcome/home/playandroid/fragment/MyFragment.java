@@ -23,21 +23,20 @@ import butterknife.BindView;
 
 public class MyFragment extends BaseFragment {
 
+    @BindView(R.id.fragment_my_regiter_or_login_tv)
+    TextView loginNameTv;
+    @BindView(R.id.fragment_my_exit_tv)
+    TextView exitTv;
+    @BindView(R.id.fragment_my_collections_tv)
+    TextView collectionsTv;
+    @BindView(R.id.fragment_my_version)
+    TextView versionTv;
+    @BindView(R.id.fragment_my_version_tv)
+    TextView showVersionTv;
+
     public static MyFragment getInstance() {
         return new MyFragment();
     }
-
-    @BindView(R.id.fragment_my_regiter_or_login_tv)
-    TextView loginNameTv;
-
-    @BindView(R.id.fragment_my_exit_tv)
-    TextView exitTv;
-
-    @BindView(R.id.fragment_my_version)
-    TextView versionTv;
-
-    @BindView(R.id.fragment_my_version_tv)
-    TextView showVersionTv;
 
     @Override
     protected int getLayoutId() {
@@ -47,6 +46,24 @@ public class MyFragment extends BaseFragment {
     @Override
     protected void initView(Bundle bundle) {
         showVersionTv.setText("v " + getVersionName());
+    }
+
+    @Override
+    protected void initListener() {
+        loginNameTv.setOnClickListener(v -> {
+            if (!TextUtils.isEmpty(SharedPreferenceUtils.getStringData("username", ""))) {
+                return;
+            }
+            RegisterOrLoginActivity.startActivity(getActivity());
+        });
+        exitTv.setOnClickListener(v -> showDialog());
+        versionTv.setOnClickListener(v -> Toast.makeText(mContext, "v" + getVersionName(), Toast.LENGTH_SHORT).show());
+        collectionsTv.setOnClickListener(v -> Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show());
+    }
+
+    @Override
+    protected void lazyFetchData() {
+
     }
 
     @Override
@@ -73,18 +90,6 @@ public class MyFragment extends BaseFragment {
         return versionName;
     }
 
-    @Override
-    protected void initListener() {
-        loginNameTv.setOnClickListener(v -> {
-            if (!TextUtils.isEmpty(SharedPreferenceUtils.getStringData("username", ""))) {
-                return;
-            }
-            RegisterOrLoginActivity.startActivity(getActivity());
-        });
-        exitTv.setOnClickListener(v -> showDialog());
-        versionTv.setOnClickListener(v -> Toast.makeText(mContext, "v" + getVersionName(), Toast.LENGTH_SHORT).show());
-    }
-
     private void showDialog() {
         new AlertDialog.Builder(getContext())
                 .setTitle("提示")
@@ -97,10 +102,5 @@ public class MyFragment extends BaseFragment {
                 .setPositiveButton("取消", null)
                 .setCancelable(true)
                 .show();
-    }
-
-    @Override
-    protected void lazyFetchData() {
-
     }
 }

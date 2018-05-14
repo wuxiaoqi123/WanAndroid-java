@@ -67,6 +67,21 @@
                 android:textSize="18sp"
                 tools:ignore="RtlHardcoded,RtlSymmetry" />
 
+
+            <TextView
+                android:id="@+id/fragment_my_collections_tv"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="?attr/selectableItemBackground"
+                android:drawableLeft="@drawable/ic_collections_black_24dp"
+                android:drawablePadding="45dp"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="15dp"
+                android:text="@string/my_collections"
+                android:textColor="@color/my_text_color"
+                android:textSize="18sp"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp">

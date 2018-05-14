@@ -11,6 +11,7 @@
     <string name="register">注册</string>
     <string name="my_theme">浏览历史</string>
     <string name="my_setting">退出登录</string>
+    <string name="my_collections">收藏</string>
     <string name="my_version">版本号</string>
     <string name="my_clear">清除缓存</string>
 </resources>
