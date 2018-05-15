@@ -52,7 +52,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name" />
 
-        <!-- 列表内列表页-->
+        <!-- 列表内列表页 -->
         <activity
             android:name=".activity.ColumnContentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
@@ -64,6 +64,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"
             android:theme="@style/FullWindowTran" />
+
+        <!-- 收藏界面 -->
+        <activity
+            android:name=".activity.CollectionActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

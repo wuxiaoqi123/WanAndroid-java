@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.welcome.home.playandroid.R;
+import com.welcome.home.playandroid.activity.CollectionActivity;
 import com.welcome.home.playandroid.activity.RegisterOrLoginActivity;
 import com.welcome.home.playandroid.base.BaseFragment;
 import com.welcome.home.playandroid.util.SharedPreferenceUtils;
@@ -58,7 +59,7 @@ public class MyFragment extends BaseFragment {
         });
         exitTv.setOnClickListener(v -> showDialog());
         versionTv.setOnClickListener(v -> Toast.makeText(mContext, "v" + getVersionName(), Toast.LENGTH_SHORT).show());
-        collectionsTv.setOnClickListener(v -> Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show());
+        collectionsTv.setOnClickListener(v -> CollectionActivity.startActivity(getActivity()));
     }
 
     @Override
