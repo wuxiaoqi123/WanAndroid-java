@@ -9,43 +9,43 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.base.BaseActivity;
+import com.welcome.home.playandroid.bean.LoginBean;
+import com.welcome.home.playandroid.contract.RegisterOrLoginContract;
 import com.welcome.home.playandroid.fragment.ColumnFragment;
 import com.welcome.home.playandroid.fragment.HomeFragment;
 import com.welcome.home.playandroid.fragment.MyFragment;
+import com.welcome.home.playandroid.presenter.RegisterOrLoginPresenterImp;
+import com.welcome.home.playandroid.util.SharedPreferenceUtils;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements RegisterOrLoginContract.View {
+
+    public static final int HOME_PAGE = 0;
+    public static final int COLUMN_PAGE = 1;
+    public static final int ME_PAGE = 2;
+    @BindView(R.id.activity_main_toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.activity_main_root_fl)
+    FrameLayout contentFl;
+    @BindView(R.id.activity_main_bottomBar)
+    BottomBar bottomBar;
+    private String mCurrentTag;
+    private Fragment mCurrentFragment;
+    private RegisterOrLoginPresenterImp presenterImp;
+    private long lastClickTime = 0;
 
     public static void startActivity(Context activity) {
         Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);
     }
-
-    public static final int HOME_PAGE = 0;
-
-    public static final int COLUMN_PAGE = 1;
-
-    public static final int ME_PAGE = 2;
-
-    private String mCurrentTag;
-
-    private Fragment mCurrentFragment;
-
-    @BindView(R.id.activity_main_toolbar)
-    Toolbar toolbar;
-
-    @BindView(R.id.activity_main_root_fl)
-    FrameLayout contentFl;
-
-    @BindView(R.id.activity_main_bottomBar)
-    BottomBar bottomBar;
 
     @Override
     protected int getLayoutId() {
@@ -70,6 +70,12 @@ public class MainActivity extends BaseActivity {
             getSupportActionBar().setTitle("");
         }
         setFragment(HOME_PAGE);
+        if (!TextUtils.isEmpty(SharedPreferenceUtils.getStringData("username", ""))) {
+            String userName = SharedPreferenceUtils.getStringData("username", "");
+            String pwd = SharedPreferenceUtils.getStringData("password", "");
+            presenterImp = new RegisterOrLoginPresenterImp(this);
+            presenterImp.login(userName, pwd);
+        }
     }
 
     @Override
@@ -142,8 +148,6 @@ public class MainActivity extends BaseActivity {
         return fragment;
     }
 
-    private long lastClickTime = 0;
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -158,5 +162,20 @@ public class MainActivity extends BaseActivity {
                 android.os.Process.killProcess(android.os.Process.myPid());
             }
         }
+    }
+
+    @Override
+    public void register(LoginBean loginBean) {
+
+    }
+
+    @Override
+    public void login(LoginBean loginBean) {
+
+    }
+
+    @Override
+    public void showErrMsg(String msg) {
+
     }
 }

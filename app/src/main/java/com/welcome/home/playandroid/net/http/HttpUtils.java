@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+import com.welcome.home.playandroid.net.cache.MemoryCookie;
 import com.welcome.home.playandroid.net.config.NetWorkConfiguration;
 import com.welcome.home.playandroid.net.interceptor.LogInterceptor;
 import com.welcome.home.playandroid.util.NetworkUtil;
@@ -33,60 +34,6 @@ public class HttpUtils {
     private NetWorkConfiguration configuration;
 
     private Context mContext;
-
-    public void init(Context context) {
-        this.mContext = context.getApplicationContext();
-        if (configuration == null) {
-            configuration = new NetWorkConfiguration(context);
-        }
-        if (configuration.getIsCache()) {
-
-            mOkHttpClient = new OkHttpClient.Builder()
-//                   网络缓存拦截器
-                    .addInterceptor(interceptor)
-                    .addNetworkInterceptor(interceptor)
-//                    自定义网络Log显示
-                    .addInterceptor(new LogInterceptor())
-                    .cache(configuration.getDiskCache())
-                    .connectTimeout(configuration.getConnectTimeOut(), TimeUnit.SECONDS)
-                    .connectionPool(configuration.getConnectionPool())
-                    .retryOnConnectionFailure(true)
-                    .build();
-        } else {
-            mOkHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new LogInterceptor())
-                    .connectTimeout(configuration.getConnectTimeOut(), TimeUnit.SECONDS)
-                    .connectionPool(configuration.getConnectionPool())
-                    .retryOnConnectionFailure(true)
-                    .build();
-
-        }
-    }
-
-    public void init(Context context, String baseUrl) {
-        init(context);
-        configuration.baseUrl(baseUrl);
-    }
-
-    public HttpUtils setLoadDiskCache(boolean isCache) {
-        if (configuration == null) {
-            configuration = new NetWorkConfiguration(mContext);
-        }
-        configuration.isDiskCache(isCache);
-        return this;
-    }
-
-    public HttpUtils setLoadMemoryCache(boolean isCache) {
-        if (configuration == null) {
-            configuration = new NetWorkConfiguration(mContext);
-        }
-        configuration.isMemoryCache(isCache);
-        return this;
-    }
-
-    private HttpUtils() {
-    }
-
     final Interceptor interceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
@@ -134,6 +81,63 @@ public class HttpUtils {
         }
     };
 
+    private HttpUtils() {
+    }
+
+    public static HttpUtils getInstance() {
+        return Singleton.instance;
+    }
+
+    public void init(Context context) {
+        this.mContext = context.getApplicationContext();
+        if (configuration == null) {
+            configuration = new NetWorkConfiguration(context);
+        }
+        if (configuration.getIsCache()) {
+
+            mOkHttpClient = new OkHttpClient.Builder()
+//                   网络缓存拦截器
+                    .addInterceptor(interceptor)
+                    .addNetworkInterceptor(interceptor)
+//                    自定义网络Log显示
+                    .addInterceptor(new LogInterceptor())
+                    .cache(configuration.getDiskCache())
+                    .cookieJar(new MemoryCookie())
+                    .connectTimeout(configuration.getConnectTimeOut(), TimeUnit.SECONDS)
+                    .connectionPool(configuration.getConnectionPool())
+                    .retryOnConnectionFailure(true)
+                    .build();
+        } else {
+            mOkHttpClient = new OkHttpClient.Builder()
+                    .addInterceptor(new LogInterceptor())
+                    .connectTimeout(configuration.getConnectTimeOut(), TimeUnit.SECONDS)
+                    .connectionPool(configuration.getConnectionPool())
+                    .retryOnConnectionFailure(true)
+                    .build();
+        }
+    }
+
+    public void init(Context context, String baseUrl) {
+        init(context);
+        configuration.baseUrl(baseUrl);
+    }
+
+    public HttpUtils setLoadDiskCache(boolean isCache) {
+        if (configuration == null) {
+            configuration = new NetWorkConfiguration(mContext);
+        }
+        configuration.isDiskCache(isCache);
+        return this;
+    }
+
+    public HttpUtils setLoadMemoryCache(boolean isCache) {
+        if (configuration == null) {
+            configuration = new NetWorkConfiguration(mContext);
+        }
+        configuration.isMemoryCache(isCache);
+        return this;
+    }
+
     /**
      * 设置网络配置参数
      *
@@ -162,10 +166,6 @@ public class HttpUtils {
     public static class Singleton {
         @SuppressLint("StaticFieldLeak")
         static HttpUtils instance = new HttpUtils();
-    }
-
-    public static HttpUtils getInstance() {
-        return Singleton.instance;
     }
 
 }
