@@ -73,9 +73,11 @@ public class MyFragment extends BaseFragment {
         if (!TextUtils.isEmpty(SharedPreferenceUtils.getStringData("username", ""))) {
             loginNameTv.setText(SharedPreferenceUtils.getStringData("username", ""));
             exitTv.setVisibility(View.VISIBLE);
+            collectionsTv.setVisibility(View.VISIBLE);
         } else {
             loginNameTv.setText(getString(R.string.register_or_login));
             exitTv.setVisibility(View.GONE);
+            collectionsTv.setVisibility(View.GONE);
         }
     }
 

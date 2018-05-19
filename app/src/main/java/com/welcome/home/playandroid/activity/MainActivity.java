@@ -171,11 +171,10 @@ public class MainActivity extends BaseActivity implements RegisterOrLoginContrac
 
     @Override
     public void login(LoginBean loginBean) {
-
     }
 
     @Override
     public void showErrMsg(String msg) {
-
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

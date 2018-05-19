@@ -1,6 +1,7 @@
 package com.welcome.home.playandroid.net.api;
 
 import com.welcome.home.playandroid.bean.BannerList;
+import com.welcome.home.playandroid.bean.CollectList;
 import com.welcome.home.playandroid.bean.ColumnContentList;
 import com.welcome.home.playandroid.bean.ColumnList;
 import com.welcome.home.playandroid.bean.HomeList;
@@ -43,4 +44,7 @@ public interface WanAndroidApi {
     @FormUrlEncoded
     @POST("/user/login")
     Observable<HttpResponse<LoginBean>> login(@Field("username") String username, @Field("password") String password);
+
+    @GET("/lg/collect/list/0/json")
+    Observable<HttpResponse<CollectList>> getCollectList();
 }

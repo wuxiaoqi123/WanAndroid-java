@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
-import com.welcome.home.playandroid.net.cache.MemoryCookie;
+import com.welcome.home.playandroid.net.cache.CookieManager;
 import com.welcome.home.playandroid.net.config.NetWorkConfiguration;
 import com.welcome.home.playandroid.net.interceptor.LogInterceptor;
 import com.welcome.home.playandroid.util.NetworkUtil;
@@ -102,7 +102,7 @@ public class HttpUtils {
 //                    自定义网络Log显示
                     .addInterceptor(new LogInterceptor())
                     .cache(configuration.getDiskCache())
-                    .cookieJar(new MemoryCookie())
+                    .cookieJar(new CookieManager())
                     .connectTimeout(configuration.getConnectTimeOut(), TimeUnit.SECONDS)
                     .connectionPool(configuration.getConnectionPool())
                     .retryOnConnectionFailure(true)
@@ -110,6 +110,7 @@ public class HttpUtils {
         } else {
             mOkHttpClient = new OkHttpClient.Builder()
                     .addInterceptor(new LogInterceptor())
+                    .cookieJar(new CookieManager())
                     .connectTimeout(configuration.getConnectTimeOut(), TimeUnit.SECONDS)
                     .connectionPool(configuration.getConnectionPool())
                     .retryOnConnectionFailure(true)
