@@ -1,6 +1,7 @@
 package com.welcome.home.playandroid.net.api;
 
 import com.welcome.home.playandroid.bean.BannerList;
+import com.welcome.home.playandroid.bean.CollectArticleList;
 import com.welcome.home.playandroid.bean.CollectList;
 import com.welcome.home.playandroid.bean.ColumnContentList;
 import com.welcome.home.playandroid.bean.ColumnList;
@@ -47,4 +48,8 @@ public interface WanAndroidApi {
 
     @GET("/lg/collect/list/0/json")
     Observable<HttpResponse<CollectList>> getCollectList();
+
+    @FormUrlEncoded
+    @POST("/lg/collect/add/json")
+    Observable<HttpResponse<CollectArticleList>> collectArticle(@Field("title") String title, @Field("author") String author, @Field("link") String link);
 }

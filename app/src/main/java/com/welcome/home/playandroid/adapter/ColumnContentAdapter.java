@@ -30,12 +30,10 @@ import butterknife.ButterKnife;
 
 public class ColumnContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<ColumnContentList.DatasBean> mList;
-
-    private View headView;
     private static final int TYPE_HEAD = 0x01;
     private static final int TYPE_1 = 0x02;
-
+    private List<ColumnContentList.DatasBean> mList;
+    private View headView;
     private Context mContext;
 
     public ColumnContentAdapter(Context context) {
@@ -85,12 +83,6 @@ public class ColumnContentAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     @Override
-    public int getItemCount() {
-        if (mList == null) return 0;
-        return mList.size() + getStart();
-    }
-
-    @Override
     public int getItemViewType(int position) {
         if (getStart() > 0) {
             if (position == 0) {
@@ -98,6 +90,12 @@ public class ColumnContentAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
         }
         return TYPE_1;
+    }
+
+    @Override
+    public int getItemCount() {
+        if (mList == null) return 0;
+        return mList.size() + getStart();
     }
 
     private int getStart() {
@@ -131,9 +129,10 @@ public class ColumnContentAdapter extends RecyclerView.Adapter<RecyclerView.View
             itemView.animate().scaleX(0.9f).scaleY(0.7f).alpha(0.8f).setDuration(0).start();
             itemView.animate().scaleX(1).scaleY(1).alpha(1).setDuration(350).setInterpolator(new OvershootInterpolator(0.8f)).start();
             itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(itemView.getContext(), BrowserActivity.class);
-                intent.setData(Uri.parse(homeListDatasBean.getLink()));
-                itemView.getContext().startActivity(intent);
+//                Intent intent = new Intent(itemView.getContext(), BrowserActivity.class);
+//                intent.setData(Uri.parse(homeListDatasBean.getLink()));
+//                itemView.getContext().startActivity(intent);
+                BrowserActivity.startActivity(itemView.getContext(), homeListDatasBean.getTitle(), homeListDatasBean.getAuthor(), homeListDatasBean.getLink());
             });
         }
     }

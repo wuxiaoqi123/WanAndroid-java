@@ -1,7 +1,5 @@
 package com.welcome.home.playandroid.fragment;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,23 +33,18 @@ import cn.bingoogolapple.bgabanner.BGABanner;
 
 public class HomeFragment extends BaseFragment implements HomeContract.View, BGABanner.Delegate {
 
+    @BindView(R.id.refresh_content_smart_layout)
+    SmartRefreshLayout smartRefreshLayout;
+    @BindView(R.id.refresh_content_recyclerview)
+    RecyclerView recyclerView;
+    private HomePresenter presenter;
+    private int page = 0;
+    private HomeListAdapter mAdapter;
+    private BGABanner headBanner;
+
     public static HomeFragment getInstance() {
         return new HomeFragment();
     }
-
-    @BindView(R.id.refresh_content_smart_layout)
-    SmartRefreshLayout smartRefreshLayout;
-
-    @BindView(R.id.refresh_content_recyclerview)
-    RecyclerView recyclerView;
-
-    private HomePresenter presenter;
-
-    private int page = 0;
-
-    private HomeListAdapter mAdapter;
-
-    private BGABanner headBanner;
 
     @Override
     protected int getLayoutId() {
@@ -71,6 +64,17 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, BGA
         initRefreshLayout();
     }
 
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void lazyFetchData() {
+        presenter.loadBannerList();
+        presenter.loadHomeList(0);
+    }
+
     private void initRefreshLayout() {
         SmartRefreshLayoutUtils.initRefreshLayoutBz(getActivity(), smartRefreshLayout);
         smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
@@ -87,17 +91,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, BGA
                 presenter.loadHomeList(page);
             }
         });
-    }
-
-    @Override
-    protected void initListener() {
-
-    }
-
-    @Override
-    protected void lazyFetchData() {
-        presenter.loadBannerList();
-        presenter.loadHomeList(0);
     }
 
     @Override
@@ -127,9 +120,10 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, BGA
     @Override
     public void onBannerItemClick(BGABanner banner, View itemView, Object model, int position) {
         if (model instanceof BannerList) {
-            Intent intent = new Intent(itemView.getContext(), BrowserActivity.class);
-            intent.setData(Uri.parse(((BannerList) model).getUrl()));
-            itemView.getContext().startActivity(intent);
+//            Intent intent = new Intent(itemView.getContext(), BrowserActivity.class);
+//            intent.setData(Uri.parse(((BannerList) model).getUrl()));
+//            itemView.getContext().startActivity(intent);
+            BrowserActivity.startActivity(itemView.getContext(), ((BannerList) model).getTitle(), ((BannerList) model).getDesc(), ((BannerList) model).getUrl());
         }
     }
 }
