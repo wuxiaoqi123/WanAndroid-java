@@ -41,6 +41,7 @@ public class MainActivity extends BaseActivity implements RegisterOrLoginContrac
     private Fragment mCurrentFragment;
     private RegisterOrLoginPresenterImp presenterImp;
     private long lastClickTime = 0;
+    private DrawerLayout drawer;
 
     public static void startActivity(Context activity) {
         Intent intent = new Intent(activity, MainActivity.class);
@@ -69,6 +70,8 @@ public class MainActivity extends BaseActivity implements RegisterOrLoginContrac
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle("");
         }
+        drawer = findViewById(R.id.drawer_layout);
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         setFragment(HOME_PAGE);
         if (!TextUtils.isEmpty(SharedPreferenceUtils.getStringData("username", ""))) {
             String userName = SharedPreferenceUtils.getStringData("username", "");
@@ -150,7 +153,6 @@ public class MainActivity extends BaseActivity implements RegisterOrLoginContrac
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
