@@ -9,15 +9,12 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.welcome.home.playandroid.R;
 import com.welcome.home.playandroid.base.BaseActivity;
 import com.welcome.home.playandroid.bean.CollectList;
-import com.welcome.home.playandroid.net.api.WanAndroidApi;
-import com.welcome.home.playandroid.net.callback.RxObserver;
-import com.welcome.home.playandroid.net.exception.ResponeThrowable;
-import com.welcome.home.playandroid.net.http.HttpUtils;
-import com.welcome.home.playandroid.net.transformer.DefaultTransformer;
+import com.welcome.home.playandroid.contract.CollectListContract;
+import com.welcome.home.playandroid.presenter.CollectListPresenter;
 
 import butterknife.BindView;
 
-public class CollectionActivity extends BaseActivity {
+public class CollectionActivity extends BaseActivity implements CollectListContract.View {
 
     @BindView(R.id.refresh_content_smart_layout)
     SmartRefreshLayout smartRefreshLayout;
@@ -25,6 +22,7 @@ public class CollectionActivity extends BaseActivity {
     @BindView(R.id.refresh_content_recyclerview)
     RecyclerView recyclerView;
 
+    private CollectListPresenter presenterImp;
 
     public static void startActivity(Context activity) {
         Intent intent = new Intent(activity, CollectionActivity.class);
@@ -48,25 +46,22 @@ public class CollectionActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        HttpUtils.getInstance().getRetrofitClient().build(WanAndroidApi.class)
-                .getCollectList()
-                .compose(new DefaultTransformer<>())
-                .subscribe(new RxObserver<CollectList>() {
-                    @Override
-                    public void onFail(ResponeThrowable ex) {
-                        Toast.makeText(CollectionActivity.this, ex.message, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onSuccess(CollectList collectList) {
-                        Toast.makeText(CollectionActivity.this, "成功", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(CollectionActivity.this, collectList.getDatas().get(0).getLink(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+        presenterImp = new CollectListPresenter(this);
+        presenterImp.getCollectList();
     }
 
     @Override
     protected void initListener() {
 
+    }
+
+    @Override
+    public void setCollectList(CollectList collectList) {
+        Toast.makeText(this, "成功", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrMsg(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }
