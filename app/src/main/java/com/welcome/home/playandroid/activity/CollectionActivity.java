@@ -2,11 +2,16 @@ package com.welcome.home.playandroid.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.welcome.home.playandroid.R;
+import com.welcome.home.playandroid.adapter.CollectionListAdapter;
 import com.welcome.home.playandroid.base.BaseActivity;
 import com.welcome.home.playandroid.bean.CollectList;
 import com.welcome.home.playandroid.contract.CollectListContract;
@@ -22,7 +27,7 @@ public class CollectionActivity extends BaseActivity implements CollectListContr
     @BindView(R.id.refresh_content_recyclerview)
     RecyclerView recyclerView;
 
-    private CollectListPresenter presenterImp;
+    private CollectionListAdapter mAdapter;
 
     public static void startActivity(Context activity) {
         Intent intent = new Intent(activity, CollectionActivity.class);
@@ -46,7 +51,18 @@ public class CollectionActivity extends BaseActivity implements CollectListContr
 
     @Override
     protected void initViews() {
-        presenterImp = new CollectListPresenter(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar == null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle("");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        smartRefreshLayout.setEnableAutoLoadMore(false);
+        smartRefreshLayout.setEnableRefresh(false);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(mAdapter = new CollectionListAdapter(this));
+        CollectListPresenter presenterImp = new CollectListPresenter(this);
         presenterImp.getCollectList();
     }
 
@@ -56,8 +72,20 @@ public class CollectionActivity extends BaseActivity implements CollectListContr
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void setCollectList(CollectList collectList) {
-        Toast.makeText(this, "成功", Toast.LENGTH_SHORT).show();
+        mAdapter.setHomeList(collectList);
     }
 
     @Override

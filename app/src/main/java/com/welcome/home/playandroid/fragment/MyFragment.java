@@ -101,6 +101,7 @@ public class MyFragment extends BaseFragment {
                     SharedPreferenceUtils.clear();
                     exitTv.setVisibility(View.GONE);
                     loginNameTv.setText(getString(R.string.register_or_login));
+                    collectionsTv.setVisibility(View.GONE);
                 })
                 .setPositiveButton("取消", null)
                 .setCancelable(true)

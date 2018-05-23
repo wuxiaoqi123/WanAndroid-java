@@ -21,6 +21,7 @@ import com.welcome.home.playandroid.contract.RegisterOrLoginContract;
 import com.welcome.home.playandroid.fragment.ColumnFragment;
 import com.welcome.home.playandroid.fragment.HomeFragment;
 import com.welcome.home.playandroid.fragment.MyFragment;
+import com.welcome.home.playandroid.net.cache.PersistentCookieStore;
 import com.welcome.home.playandroid.presenter.RegisterOrLoginPresenterImp;
 import com.welcome.home.playandroid.util.SharedPreferenceUtils;
 
@@ -77,6 +78,8 @@ public class MainActivity extends BaseActivity implements RegisterOrLoginContrac
             String userName = SharedPreferenceUtils.getStringData("username", "");
             String pwd = SharedPreferenceUtils.getStringData("password", "");
             presenterImp = new RegisterOrLoginPresenterImp(this);
+            PersistentCookieStore persistentCookieStore = new PersistentCookieStore(this);
+            persistentCookieStore.removeAll();
             presenterImp.login(userName, pwd);
         }
     }
